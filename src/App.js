@@ -1,22 +1,13 @@
 import React, {Component} from 'react'
 import { ApolloProvider } from 'react-apollo'
 import { Query } from 'react-apollo'
-// import { gql } from 'graphql-tag'
-import { gql } from 'apollo-boost'
 
 import client from './client'
+import { ME } from './graphql'
 
 
 
 
-const ME = gql`
-    query me {
-        user(login: "supershinkun") {
-            name
-            avatarUrl
-        }
-    }
-`
 
 class App extends Component {
     render() {
@@ -30,7 +21,7 @@ class App extends Component {
                             if (loading) return 'Loading...'
                             if (error) return `Error ${error.message}`
 
-                            return <div>data.user.name</div>
+                            return <div>{data.user.name}</div>
                         }
                     }
                 </Query>
